@@ -1,0 +1,11 @@
+{
+  "entry": "server.js",
+  "files": {
+    "pages/_publication/_post_type/_id.js": "pages/_publication/_post_type/_id.js",
+    "server.js": "server.js"
+  },
+  "maps": {
+    "pages/_publication/_post_type/_id.js": "pages/_publication/_post_type/_id.js.map",
+    "server.js": "server.js.map"
+  }
+}

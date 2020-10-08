@@ -1,0 +1,159 @@
+$link: #333333;
+$card-content-padding: 1rem;
+$body-font-size: 14px;
+$footer-padding: 1rem;
+$section-padding: 1rem 0;
+$radius: 0;
+$card-radius: 0;
+@import "~bulma/bulma.sass";
+@import "~buefy/src/scss/buefy";
+
+
+html {
+    scroll-behavior: smooth;
+    overflow-y: auto;
+}
+
+body {
+    font-smooth: auto;
+    -webkit-font-smoothing: auto;
+}
+
+:focus {
+    outline: unset;
+}
+
+.container {
+    max-width: 999px !important;
+    padding: 0 1rem;
+
+    &.small {
+        max-width: 666px !important;
+    }
+}
+
+main.main {
+    padding: 1.5rem 0;
+    min-height: calc(100vh - 133px);
+}
+
+.notification {
+    padding: 1.25rem;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.image {
+    img {
+        width: 100%;
+    }
+}
+
+.button .image {
+    margin-right: .5rem;
+}
+
+.media.user {
+    padding-top: 0;
+    border-top: 0;
+
+    .media-left {
+        margin-right: .5rem;
+    }
+}
+
+.header {
+    .header-body {
+        padding: 1rem 0;
+    }
+
+    .navbar {
+        .container {
+            min-height: 2.25rem;
+        }
+
+        .level {
+            width: 100%;
+        }
+    }
+
+    .logo {
+        max-width: 220px;
+        font-size: 2rem;
+        font-weight: bold;
+        color: #8f00ff;
+
+        span {
+            font-size: 1rem;
+            color: #33333350;
+        }
+    }
+}
+
+.card {
+    box-shadow: unset;
+    border: 1px solid #EEEEEE;
+}
+
+.button.is-text {
+    text-decoration: none;
+}
+
+.input, .taginput .taginput-container.is-focusable, .textarea {
+    border-color: #dbdbdb;
+    box-shadow: none;
+}
+
+.card .media:not(:last-child) {
+    margin-bottom: 0;
+}
+
+.items {
+    margin-bottom: 1.5rem;
+}
+
+.item {
+    &.media + .media {
+        border-top: 1px dashed #DDD;
+        margin-top: .5rem;
+        padding-top: .5rem;
+    }
+
+    .vote {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        border: 1px solid #EEE;
+        padding: .125rem .25rem;
+        font-size: 12px;
+    }
+
+    .meta {
+        margin-top: .5rem;
+
+        &:not(:last-child) {
+            margin-bottom: .5rem;
+        }
+    }
+}
+
+.widget-title {
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+    .media-content {
+        overflow-x: unset;
+    }
+
+    .navbar {
+        padding: 1rem 0 0;
+    }
+}

@@ -19,10 +19,7 @@ const RestfulRepo = (app, item) => {
             });
         },
         create: async (body) => {
-            return await app.$axios.$post(`/${item.space}/${item.endpoint}/`, {
-                ...body,
-                publications: [process.env.PUBLICATION]
-            })
+            return await app.$axios.$post(`/${item.space}/${item.endpoint}/`, body)
         },
         get: async (id, query) => {
             return await app.$axios.$get(`/${item.space}/${item.endpoint}/${id}/`, {params: query})
@@ -89,29 +86,17 @@ const apis_module = [
         methods: []
     },
     {
-        space: 'cms',
-        endpoint: 'posts',
-        name: 'post',
-        methods: []
-    },
-    {
-        space: 'cms',
-        endpoint: 'term-taxonomies',
+        space: `pub-${process.env.PUBLICATION}`,
+        endpoint: 'taxonomies',
         name: 'taxonomy',
         methods: []
     },
     {
-        space: 'global-cms',
-        endpoint: 'taxonomies',
-        name: 'pub_taxonomy',
+        space: `pub-${process.env.PUBLICATION}`,
+        endpoint: 'posts',
+        name: 'post',
         methods: []
     },
-    {
-        space: 'global-cms',
-        endpoint: 'posts',
-        name: 'pub_post',
-        methods: []
-    }
 ];
 
 export default function (app, inject) {

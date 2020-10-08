@@ -53,13 +53,8 @@ export default async function (context, inject) {
     const setUser = async (user) => {
         await context.store.commit('auth/SET_USER', user);
     };
-    const setPublication = async () => {
-        let publication = await context.$axios.$get(`/cms/publications/${process.env.PUBLICATION}/`);
-        await context.store.commit('config/SET_PUBLICATION', publication);
-    };
     const init = async () => {
         let token = await getToken();
-        await setPublication();
         await setToken(token);
         if (token) {
             let user = await getUser();
@@ -67,7 +62,9 @@ export default async function (context, inject) {
         }
     };
 
-    await init();
+    if (process['server']) {
+        await init();
+    }
 
     $auth.login = login;
     $auth.logout = logout;

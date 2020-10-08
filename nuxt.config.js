@@ -1,14 +1,12 @@
 require('dotenv').config();
+
 export default {
     /*
     ** ENV
     */
     env: {
-        PUBLICATION: process.env.PUBLICATION || 1,
-        BASE_URL: process.env.BASE_URL || 'https://vuerepository.com',
-        API_DOMAIN: process.env.API_DOMAIN || 'https://expo.bubblask.com',
-        SITE_TITLE: process.env.SITE_TITLE || 'CMS Repository',
-        SITE_DESCRIPTION: process.env.SITE_DESCRIPTION || 'CMS Repository'
+        SITE_URL: process.env.SITE_URL,
+        API_ENDPOINT: process.env.API_ENDPOINT,
     },
     /*
     ** Nuxt rendering mode
@@ -25,7 +23,6 @@ export default {
     ** See https://nuxtjs.org/api/configuration-head
     */
     head: {
-        titleTemplate: '%s - cms-base',
         title: process.env.npm_package_name || '',
         meta: [
             {charset: 'utf-8'},
@@ -40,7 +37,8 @@ export default {
     ** Global CSS
     */
     css: [
-        '@/assets/scss/app.scss'
+        '@/assets/scss/app.scss',
+        '@mdi/font/css/materialdesignicons.css'
     ],
     /*
     ** Plugins to load before mounting the App
@@ -71,13 +69,15 @@ export default {
         '@nuxtjs/pwa',
         '@nuxt/content',
         ['cookie-universal-nuxt', {alias: 'ck'}],
+        'nuxt-ssr-cache',
+        '@nuxtjs/sitemap'
     ],
     /*
     ** Axios module configuration
     ** See https://axios.nuxtjs.org/options
     */
     axios: {
-        baseURL: process.env.API_DOMAIN
+        baseURL: process.env.API_ENDPOINT
     },
     /*
     ** Content module configuration
@@ -108,5 +108,20 @@ export default {
             productionTip: false,
             devtools: true
         }
-    }
+    },
+    cache: {
+        useHostPrefix: false,
+        pages: [
+            // you can also pass a regular expression to test a path
+            '/',
+            // /^\/\d+\/$/,
+        ],
+        store: {
+            type: 'memory',
+            max: 256,
+
+            ttl: 60 * 60 * 24,
+        },
+    },
+    sitemap: {}
 }

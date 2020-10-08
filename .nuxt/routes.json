@@ -1,0 +1,9 @@
+[
+  {
+    "name": "publication-post_type-id",
+    "path": "/:publication?/:post_type?/:id?",
+    "component": "/Users/apple/Desktop/OpenSource/cms-base/pages/_publication/_post_type/_id.vue",
+    "chunkName": "pages/_publication/_post_type/_id",
+    "_name": "_4980b008"
+  }
+]
