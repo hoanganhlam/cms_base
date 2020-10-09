@@ -5,21 +5,21 @@
     "../server/index.ssr.html",
     "4.8cfcd78.js",
     "LICENSES",
-    "app.4fbd295.js",
+    "app.bf35129.js",
     "fonts/materialdesignicons-webfont.1e9e350.woff",
     "fonts/materialdesignicons-webfont.412de0a.woff2",
     "fonts/materialdesignicons-webfont.51c686b.ttf",
     "fonts/materialdesignicons-webfont.5d6f62d.eot",
     "manifest.4bede2f8.json",
-    "node_modules/commons.deb4db5.js",
+    "node_modules/commons.69ec63b.js",
     "runtime.fe8d839.js",
-    "styles.9399687.js"
+    "styles.653d73c.js"
   ],
   "initial": [
     "runtime.fe8d839.js",
-    "node_modules/commons.deb4db5.js",
-    "styles.9399687.js",
-    "app.4fbd295.js"
+    "node_modules/commons.69ec63b.js",
+    "styles.653d73c.js",
+    "app.bf35129.js"
   ],
   "async": [
     "4.8cfcd78.js"
@@ -466,6 +466,9 @@
     "029ff3d8": [
       10
     ],
+    "209dee42": [
+      10
+    ],
     "50c47315": [
       10
     ],
@@ -521,9 +524,6 @@
       10
     ],
     "7e53e864": [
-      10
-    ],
-    "209dee42": [
       10
     ],
     "2fa69a50": [
@@ -870,13 +870,13 @@
     "430f3bcf": [
       12
     ],
-    "02817b6e": [
+    "6ea10534": [
       12
     ],
     "30510e29": [
       12
     ],
-    "468ce8d1": [
+    "107d23ee": [
       12
     ],
     "abe853f0": [
@@ -927,13 +927,13 @@
     "5f14b602": [
       12
     ],
-    "47588c05": [
+    "52f61e96": [
       12
     ],
     "4b349cba": [
       12
     ],
-    "71fe7ee6": [
+    "562d253d": [
       12
     ],
     "3d9ee542": [
@@ -1266,19 +1266,19 @@
     "594db7cc": [
       2
     ],
-    "12ed2576": [
+    "78d6d657": [
       12
     ],
-    "2ed590c7": [
+    "55059a65": [
       12
     ],
-    "3b1f711a": [
+    "d3f4efca": [
       12
     ],
-    "3cd5274f": [
+    "29cc06dd": [
       12
     ],
-    "10951d5c": [
+    "64e6bfdc": [
       12
     ]
   },
@@ -1287,16 +1287,16 @@
       "4.8cfcd78.js"
     ],
     "1a3ae26b": [
-      "app.4fbd295.js"
+      "app.bf35129.js"
     ],
     "dabc93ce": [
-      "node_modules/commons.deb4db5.js"
+      "node_modules/commons.69ec63b.js"
     ],
     "6fca0322": [
       "runtime.fe8d839.js"
     ],
     "ed305750": [
-      "styles.9399687.js"
+      "styles.653d73c.js"
     ]
   }
 }

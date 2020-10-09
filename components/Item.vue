@@ -3,7 +3,7 @@
         <div class="media-content" v-bind:class="{'content': isFull}">
             <h1 v-if="isFull">{{ value.title }}</h1>
             <h4 v-else>
-                <n-link :to="`/${$route.params.publication}/${value['post_type']}/${value.slug}`">{{                        value.title }}
+                <n-link :to="`/${value['post_type']}/${value.slug}`">{{ value.title }}
                 </n-link>
             </h4>
             <p class="notification" v-if="visibleItems.includes('description')">{{ value.description }}</p>
@@ -18,7 +18,7 @@
                         <avatar icon="pound" :value="tax.media" class="is-16x16"/>
                         <span>{{ tax.term.title }}</span>
                     </n-link>
-                    <n-link :to="`/posts/${value.slug}`" class="button is-text is-small">
+                    <n-link :to="`/${value['post_type']}/${value.slug}`" class="button is-text is-small">
                         <span>20 minutes ago</span>
                     </n-link>
                     <a v-if="value.meta.source" :href="value.meta.source.href"

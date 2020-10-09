@@ -75,7 +75,7 @@
                             <div class="card">
                                 <div class="card-content">
                                     <div class="item media" v-for="p in post['related']" :key="p.id">
-                                        <n-link :to="`/${$route.params.publication}/${p['post_type']}/${p.slug}`">
+                                        <n-link :to="`/${p['post_type']}/${p.slug}`">
                                             <b-icon size="is-small" icon="plus"></b-icon>
                                             <span>{{ p.title.substr(0, 100) }}</span>
                                         </n-link>
@@ -91,6 +91,12 @@
 </template>
 
 <script>
+const parseHostname = function (href) {
+    let l = document.createElement("a");
+    l.href = href;
+    return l;
+};
+
 export default {
     name: "Master",
     data() {
@@ -155,17 +161,24 @@ export default {
             return this.$store.state.config.publication
         }
     },
-    async asyncData ({ req, res }) {
+    async asyncData({req, res}) {
+        let hostname = null;
         if (process['server']) {
-            return { host: req.headers.host }
+            hostname = req.headers.host
+        } else {
+            let or = parseHostname(window.location.href)
+            hostname = or.hostname + (or.port ? `:${or.port}` : '');
         }
+        if (hostname.includes('localhost')) {
+            hostname = 'pushfact.com'
+        }
+        return {host: hostname}
     },
     async fetch() {
-        console.log(this.host);
         const p = this.$route.params;
-        if (p.publication) {
-            const uri = `/pub-${p.publication}`;
-            const publication = await this.$axios.$get(`${uri}/detail/`);
+        const publication = await this.$axios.$get(`/pub/?host=` + this.host);
+        if (publication) {
+            const uri = `/pub-${publication.id}`;
             if (publication.options['default_post_type']) {
                 this.query.type = publication.options['default_post_type'];
             }

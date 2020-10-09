@@ -4,7 +4,7 @@
             <div class="container">
                 <div class="level">
                     <div class="level-left">
-                        <n-link class="logo" :to="publication ? `/${publication.id}` : '/'">pushFACT<span>.com</span></n-link>
+                        <n-link class="logo" to="/">pushFACT<span>.com</span></n-link>
                     </div>
                     <div class="level-right">
                         <div class="level-item">
