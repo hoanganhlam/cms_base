@@ -3,16 +3,18 @@
         <div class="media-content" v-bind:class="{'content': isFull}">
             <h1 v-if="isFull">{{ value.title }}</h1>
             <h4 v-else>
-                <n-link :to="`/${value['post_type']}/${value.slug}`">{{ value.title }}
+                <n-link class="widget-title" :to="`/${value['post_type']}/${value.slug}`">{{ value.title }}
                 </n-link>
+                <a v-if="value.post_type === 'link' && value.meta.url" :href="value.meta.url">
+                    <b-icon size="is-small" icon="link"></b-icon>
+                </a>
             </h4>
             <p class="notification" v-if="visibleItems.includes('description')">{{ value.description }}</p>
             <div class="meta" v-if="visibleItems.includes('meta')">
                 <div class="buttons">
-                    <n-link :to="`/profile/${value.user.username}`" class="button is-light is-small">
-                        <avatar :value="value.user.profile.media" class="is-16x16"/>
-                        <span>{{ convertName(value.user) }}</span>
-                    </n-link>
+                    <div v-if="value.user" class="button is-text is-small">
+                        <user :value="value.user" avatar-size="is-16x16"></user>
+                    </div>
                     <n-link v-for="tax in taxPrimaries" :key="tax.id" :to="`/${tax.taxonomy}/${tax.term.slug}`"
                             class="button is-text is-small">
                         <avatar icon="pound" :value="tax.media" class="is-16x16"/>

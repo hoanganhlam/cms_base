@@ -1,4 +1,6 @@
 import Vue from 'vue';
+const showdown = require('showdown');
+const converter = new showdown.Converter();
 
 Vue.mixin({
     methods: {
@@ -76,8 +78,8 @@ Vue.mixin({
         momentTime(date) {
 
         },
-        async fetchPosts(q) {
-            return await this.$api['pub_post'].list(q);
+        toHTML(val) {
+            return val ? converter.makeHtml(val) : '';
         }
     },
     computed: {

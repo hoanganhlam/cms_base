@@ -61,7 +61,6 @@ export default {
 .avatar.is-16x16 {
     .mdi-24px.mdi-set, .mdi-24px.mdi:before {
         font-size: 16px;
-        line-height: 1;
     }
 }
 </style>

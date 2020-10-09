@@ -2,10 +2,12 @@
   "entry": "server.js",
   "files": {
     "pages/_post_type/_id.js": "pages/_post_type/_id.js",
+    "pages/post/index.js": "pages/post/index.js",
     "server.js": "server.js"
   },
   "maps": {
     "pages/_post_type/_id.js": "pages/_post_type/_id.js.map",
+    "pages/post/index.js": "pages/post/index.js.map",
     "server.js": "server.js.map"
   }
 }

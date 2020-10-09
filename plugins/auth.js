@@ -2,7 +2,6 @@ const cookieparser = process['server'] ? require('cookieparser') : undefined;
 
 export default async function (context, inject) {
     const $auth = {};
-
     const logout = async () => {
         await setToken(null);
         await setUser(null);
@@ -54,6 +53,18 @@ export default async function (context, inject) {
         await context.store.commit('auth/SET_USER', user);
     };
     const init = async () => {
+        let hostname = null;
+        if (process['server']) {
+            hostname = context.req.headers.host
+        } else {
+            let or = parseHostname(window.location.href)
+            hostname = or.hostname + (or.port ? `:${or.port}` : '');
+        }
+        if (hostname.includes('127.0.0.1')) {
+            hostname = 'pushfact.com'
+        }
+        const publication = await context.$axios.$get(`/pub/?host=` + hostname);
+        await context.store.commit('config/SET_PUBLICATION', publication);
         let token = await getToken();
         await setToken(token);
         if (token) {

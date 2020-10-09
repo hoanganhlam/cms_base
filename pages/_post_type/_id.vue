@@ -2,10 +2,10 @@
     <main class="main">
         <div class="container">
             <div v-if="isHome || isTax" class="home">
-                <div class="notification">
+                <div class="notification is-light card">
                     <div class="columns" style="align-items: center;">
                         <div class="column">
-                            <h4 class="is-bold">Subscribe to get daily news</h4>
+                            <h4 class="widget-title">Subscribe to get daily news</h4>
                             <b-checkbox size="is-small">I agree to subscribe to the newsletter. See our Privacy
                                 Policy.
                             </b-checkbox>
@@ -20,8 +20,30 @@
                         </div>
                     </div>
                 </div>
-                <div class="items">
-                    <item :visible-items="['vote', 'meta']" v-for="item in response.results" :key="item.id"
+                <div class="items" v-if="loading">
+                    <div class="item media" v-for="i in 10" :key="i">
+                        <div class="media-content">
+                            <b-skeleton/>
+                            <b-skeleton :width="`${rdNum(1, 100)}%`"/>
+                            <div class="meta">
+                                <div class="buttons">
+                                    <div class="button is-small is-light">
+                                        <b-skeleton height="16" width="60"/>
+                                    </div>
+                                    <div class="button is-small is-text">
+                                        <b-skeleton height="16" width="80"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="media-right">
+                            <b-skeleton :width="35" height="50"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="items" v-else>
+                    <item :visible-items="['vote', 'meta', 'description']" v-for="item in response.results"
+                          :key="item.id"
                           :value="item"/>
                 </div>
                 <div class="level is-mobile">
@@ -46,7 +68,73 @@
                 </div>
             </div>
             <div v-if="isPost" class="post">
-                <div class="columns">
+                <div class="columns" v-if="loading">
+                    <div class="column">
+                        <div class="item">
+                            <b-skeleton></b-skeleton>
+                            <b-skeleton :width="`${rdNum(1, 100)}%`"/>
+                            <div style="margin-top: 1rem;" class="notification">
+                                <b-skeleton></b-skeleton>
+                                <b-skeleton></b-skeleton>
+                                <b-skeleton :width="`${rdNum(1, 100)}%`"/>
+                            </div>
+                            <div>
+                                <b-skeleton></b-skeleton>
+                                <b-skeleton></b-skeleton>
+                                <b-skeleton></b-skeleton>
+                                <b-skeleton></b-skeleton>
+                                <b-skeleton :width="`${rdNum(1, 100)}%`"/>
+                            </div>
+                            <div class="meta">
+                                <div class="buttons">
+                                    <div class="button is-small is-light">
+                                        <b-skeleton height="16" width="60"/>
+                                    </div>
+                                    <div class="button is-small is-text">
+                                        <b-skeleton height="16" width="80"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-content">
+                                    <comment-form/>
+                                </div>
+                            </div>
+                            <div class="section">
+                                <h4 class="widget-title">
+                                    <b-icon size="is-small" icon="pound"/>
+                                    <span>Tags</span>
+                                </h4>
+                                <div class="tags">
+                                    <div v-for="i in 20" :key="i" class="tag">
+                                        <b-skeleton :width="`${rdNum(50, 80)}`"></b-skeleton>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-4">
+                        <div class="section">
+                            <div class="widget-title">
+                                <b-skeleton width="60"/>
+                            </div>
+                            <div class="card">
+                                <div class="card-content">
+                                    <div class="item media" v-for="i in 5" :key="i">
+                                        <div class="media-left">
+                                            <b-icon size="is-small" icon="plus"></b-icon>
+                                        </div>
+                                        <div class="media-content">
+                                            <b-skeleton></b-skeleton>
+                                            <b-skeleton :width="`${rdNum(1, 100)}%`"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div v-else class="columns">
                     <div class="column">
                         <div class="post-content">
                             <item is-full :value="post" :visible-items="['vote', 'meta', 'description', 'hashtag']">
@@ -55,11 +143,11 @@
                                         <comment-form/>
                                     </div>
                                 </div>
-                                <div class="section">
-                                    <h4 class="widget-title">
+                                <div class="section" v-if="hashTags.length">
+                                    <div class="widget-title">
                                         <b-icon size="is-small" icon="pound"/>
                                         <span>Tags</span>
-                                    </h4>
+                                    </div>
                                     <div class="tags">
                                         <n-link v-for="tax in hashTags" :key="tax.id" :to="`/`" class="tag">
                                             <span>{{ tax.term.title }}</span>
@@ -109,9 +197,9 @@ export default {
             taxonomy: {},
             query: {
                 page_size: 10,
-                page: 1,
-                type: 'post'
-            }
+                page: 1
+            },
+            loading: false
         }
     },
     head() {
@@ -126,7 +214,7 @@ export default {
             }
         }
         return {
-            title: title
+            title: title + ` - ${this.publication.host}`
         }
     },
     computed: {
@@ -161,28 +249,15 @@ export default {
             return this.$store.state.config.publication
         }
     },
-    async asyncData({req, res}) {
-        let hostname = null;
-        if (process['server']) {
-            hostname = req.headers.host
-        } else {
-            let or = parseHostname(window.location.href)
-            hostname = or.hostname + (or.port ? `:${or.port}` : '');
-        }
-        if (hostname.includes('localhost')) {
-            hostname = 'pushfact.com'
-        }
-        return {host: hostname}
-    },
     async fetch() {
+        this.loading = true;
         const p = this.$route.params;
-        const publication = await this.$axios.$get(`/pub/?host=` + this.host);
+        const publication = this.publication;
         if (publication) {
             const uri = `/pub-${publication.id}`;
             if (publication.options['default_post_type']) {
                 this.query.type = publication.options['default_post_type'];
             }
-            await this.$store.commit('config/SET_PUBLICATION', publication);
             const q = this.$route.query
             this.query.page = q.page ? Number.parseInt(q.page) : 1;
             if (p.post_type) {
@@ -196,6 +271,7 @@ export default {
                 this.post = await this.$axios.$get(`${uri}/posts/${p.id}/`);
             }
         }
+        this.loading = false;
     },
     watch: {
         '$route.query': '$fetch'

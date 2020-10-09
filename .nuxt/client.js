@@ -92,10 +92,6 @@ async function loadAsyncComponents (to, from, next) {
   this._queryChanged = !this._paramChanged && from.fullPath !== to.fullPath
   this._diffQuery = (this._queryChanged ? getQueryDiff(to.query, from.query) : [])
 
-  if ((this._routeChanged || this._paramChanged) && this.$loading.start && !this.$loading.manual) {
-    this.$loading.start()
-  }
-
   try {
     if (this._queryChanged) {
       const Components = await resolveRouteComponents(
@@ -116,10 +112,6 @@ async function loadAsyncComponents (to, from, next) {
         }
         return false
       })
-
-      if (startLoader && this.$loading.start && !this.$loading.manual) {
-        this.$loading.start()
-      }
     }
     // Call next()
     next()
@@ -220,14 +212,6 @@ async function render (to, from, next) {
   // nextCalled is true when redirected
   let nextCalled = false
   const _next = (path) => {
-    if (from.path === path.path && this.$loading.finish) {
-      this.$loading.finish()
-    }
-
-    if (from.path !== path.path && this.$loading.pause) {
-      this.$loading.pause()
-    }
-
     if (nextCalled) {
       return
     }
@@ -383,18 +367,12 @@ async function render (to, from, next) {
 
       const hasFetch = Boolean(Component.options.fetch) && Component.options.fetch.length
 
-      const loadingIncrease = (hasAsyncData && hasFetch) ? 30 : 45
-
       // Call asyncData(context)
       if (hasAsyncData) {
         const promise = promisify(Component.options.asyncData, app.context)
 
         promise.then((asyncDataResult) => {
           applyAsyncData(Component, asyncDataResult)
-
-          if (this.$loading.increase) {
-            this.$loading.increase(loadingIncrease)
-          }
         })
         promises.push(promise)
       }
@@ -409,9 +387,6 @@ async function render (to, from, next) {
           p = Promise.resolve(p)
         }
         p.then((fetchResult) => {
-          if (this.$loading.increase) {
-            this.$loading.increase(loadingIncrease)
-          }
         })
         promises.push(p)
       }
@@ -421,10 +396,6 @@ async function render (to, from, next) {
 
     // If not redirected
     if (!nextCalled) {
-      if (this.$loading.finish && !this.$loading.manual) {
-        this.$loading.finish()
-      }
-
       next()
     }
   } catch (err) {

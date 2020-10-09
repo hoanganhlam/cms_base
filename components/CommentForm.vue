@@ -7,7 +7,9 @@
         <div class="level v-center">
             <div class="level-left">
                 <div class="level-item">
-                    <user-card avatar-size="is-16x16"/>
+                    <div class="button is-small">
+                        <user avatar-size="is-16x16"/>
+                    </div>
                 </div>
                 <slot></slot>
             </div>
@@ -23,11 +25,9 @@
 </template>
 
 <script>
-import User from "./User";
 
 export default {
     name: "Comment",
-    components: {'user-card': User},
     props: {
         size: {
             default: null
