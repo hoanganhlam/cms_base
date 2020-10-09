@@ -155,7 +155,13 @@ export default {
             return this.$store.state.config.publication
         }
     },
+    async asyncData ({ req, res }) {
+        if (process['server']) {
+            return { host: req.headers.host }
+        }
+    },
     async fetch() {
+        console.log(this.host);
         const p = this.$route.params;
         if (p.publication) {
             const uri = `/pub-${p.publication}`;
