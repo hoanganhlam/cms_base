@@ -14,14 +14,17 @@
                         </n-link>
                     </div>
                     <div class="level-right">
-                        <b-field>
-                            <div class="control">
+                        <b-field grouped>
+                            <div class="control" v-if="publication.options['allow_guess_post']">
                                 <n-link to="/post" class="button is-success">
                                     <span>Create</span>
                                     <b-icon size="is-small" icon="pen"></b-icon>
                                 </n-link>
                             </div>
                             <b-input expanded icon="magnify" placeholder="Search..."></b-input>
+                            <div class="control">
+                                <login-bar></login-bar>
+                            </div>
                         </b-field>
                     </div>
                 </div>
@@ -31,8 +34,11 @@
 </template>
 
 <script>
+import LoginBar from "@/components/LoginBar";
+
 export default {
     name: "PartialHeader",
+    components: {LoginBar},
     computed: {
         publication() {
             return this.$store.state.config.publication

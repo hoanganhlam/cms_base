@@ -109,12 +109,12 @@ __webpack_require__.d(data_types_namespaceObject, "SELECT", function() { return 
 __webpack_require__.d(data_types_namespaceObject, "MEDIA", function() { return MEDIA; });
 __webpack_require__.d(data_types_namespaceObject, "EDITOR", function() { return EDITOR; });
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./pages/post/index.vue?vue&type=template&id=304dc7b8&scoped=true&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.publication)?_c('main',{staticClass:"main"},[_vm._ssrNode("<div class=\"container\" data-v-304dc7b8>","</div>",[_c('b-field',[_c('div',{staticClass:"control"},[_c('b-dropdown',{model:{value:(_vm.form.post_type),callback:function ($$v) {_vm.$set(_vm.form, "post_type", $$v)},expression:"form.post_type"}},[_c('div',{staticClass:"button",attrs:{"slot":"trigger"},slot:"trigger"},[_c('span',{staticClass:"is-capitalized"},[_vm._v(_vm._s(_vm.form.post_type))])]),_vm._v(" "),_vm._l((_vm.publication.options['post_types']),function(t){return _c('b-dropdown-item',{key:t.label,attrs:{"value":t.label}},[_c('span',[_vm._v(_vm._s(t.title))])])})],2)],1),_vm._v(" "),_c('b-input',{attrs:{"expanded":"","placeholder":"Title"},model:{value:(_vm.form.title),callback:function ($$v) {_vm.$set(_vm.form, "title", $$v)},expression:"form.title"}}),_vm._v(" "),_c('div',{staticClass:"control"},[_c('div',{staticClass:"button",class:{'is-success': _vm.showOption},on:{"click":function($event){_vm.showOption = !_vm.showOption}}},[_c('b-icon',{attrs:{"size":"is-small","icon":"cogs"}})],1)])],1),_vm._ssrNode(" "),(_vm.form.post_type === 'link')?_c('b-field',[_c('b-input',{attrs:{"expanded":"","icon":"link","placeholder":"https://fournalist.com"},model:{value:(_vm.url),callback:function ($$v) {_vm.url=$$v},expression:"url"}}),_vm._v(" "),_c('div',{staticClass:"control"},[_c('div',{staticClass:"button",on:{"click":_vm.fetchURL}},[_vm._v("Fetch")])])],1):_vm._e(),_vm._ssrNode(" "),_vm._ssrNode("<div style=\"margin-bottom: .75rem;\" data-v-304dc7b8>","</div>",[_c('transition',{attrs:{"name":"fade"}},[(_vm.showOption)?_c('div',[(_vm.field_addons.length)?_c('div',{staticClass:"card"},[_c('div',{staticClass:"card-content"},_vm._l((_vm.field_addons),function(sch){return _c('div',{key:sch.field},[_c('s-field',{attrs:{"schema":sch,"value":_vm.form['meta'][sch.field]},on:{"input":function($event){_vm.form['meta'][sch.field] = $event}}})],1)}),0)]):_vm._e(),_vm._v(" "),_c('b-field',{attrs:{"label":"Taxonomy","label-position":"on-border"}},[_c('div',{staticClass:"card"},[_c('div',{staticClass:"card-content"},_vm._l((_vm.publication.options['taxonomies']),function(tax){return _c('b-field',{key:tax.id},[_c('TaxSelector',{attrs:{"size":"is-small","taxonomy":tax.label,"value":_vm.form['terms'] ? _vm.form['terms'] : []},on:{"select":_vm.addTerm}})],1)}),1)])])],1):_vm._e()]),_vm._ssrNode(" "),_c('transition',[(!_vm.showOption)?_c('div',[_c('b-field',[_c('b-input',{attrs:{"placeholder":"Description","rows":2,"type":"textarea"},model:{value:(_vm.form.description),callback:function ($$v) {_vm.$set(_vm.form, "description", $$v)},expression:"form.description"}})],1),_vm._v(" "),_c('b-field',[_c('editor',{attrs:{"height":"500"},model:{value:(_vm.form.content),callback:function ($$v) {_vm.$set(_vm.form, "content", $$v)},expression:"form.content"}})],1)],1):_vm._e()])],2),_vm._ssrNode(" "),_vm._ssrNode("<div class=\"level is-mobile\" data-v-304dc7b8>","</div>",[_vm._ssrNode("<div class=\"level-left\" data-v-304dc7b8>","</div>",[_vm._ssrNode("<div class=\"button\" data-v-304dc7b8>","</div>",[_c('user',{attrs:{"value":_vm.currentUser,"avatar-size":"is-24x24"}})],1)]),_vm._ssrNode(" <div class=\"level-right\" data-v-304dc7b8><div class=\"button is-dark\" data-v-304dc7b8>Submit</div></div>")],2)],2)]):_vm._e()}
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./pages/post/index.vue?vue&type=template&id=39f28e3c&scoped=true&
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.publication && _vm.publication.options['allow_guess_post'])?_c('main',{staticClass:"main"},[_vm._ssrNode("<div class=\"container\" data-v-39f28e3c>","</div>",[_vm._ssrNode("<div class=\"level is-mobile\" data-v-39f28e3c>","</div>",[_vm._ssrNode("<div class=\"level-left\" data-v-39f28e3c>","</div>",[_c('b-field',[_c('div',{staticClass:"control"},[_c('div',{staticClass:"button is-static"},[_vm._v("New")])]),_vm._v(" "),_c('div',{staticClass:"control"},[_c('b-dropdown',{model:{value:(_vm.form.post_type),callback:function ($$v) {_vm.$set(_vm.form, "post_type", $$v)},expression:"form.post_type"}},[_c('div',{staticClass:"button",attrs:{"slot":"trigger"},slot:"trigger"},[_c('span',{staticClass:"is-capitalized"},[_vm._v(_vm._s(_vm.form.post_type))]),_vm._v(" "),_c('b-icon',{attrs:{"icon":"chevron-down","size":"is-small"}})],1),_vm._v(" "),_vm._l((_vm.publication.options['post_types']),function(t){return _c('b-dropdown-item',{key:t.label,attrs:{"value":t.label}},[_c('span',[_vm._v(_vm._s(t.title))])])})],2)],1)])],1),_vm._ssrNode(" "),_vm._ssrNode("<div class=\"level-right\" data-v-39f28e3c>","</div>",[_vm._ssrNode("<div class=\"control\" data-v-39f28e3c>","</div>",[_vm._ssrNode("<div"+(_vm._ssrClass("button",{'is-success': _vm.showOption}))+" data-v-39f28e3c>","</div>",[_c('b-icon',{attrs:{"size":"is-small","icon":"cogs"}})],1)])])],2),_vm._ssrNode(" "),_vm._ssrNode("<div style=\"margin-bottom: .75rem;\" data-v-39f28e3c>","</div>",[_c('transition',{attrs:{"name":"fade"}},[(_vm.showOption)?_c('div',[(_vm.field_addons.length)?_c('div',{staticClass:"card"},[_c('div',{staticClass:"card-content"},_vm._l((_vm.field_addons),function(sch){return _c('div',{key:sch.field},[_c('s-field',{attrs:{"schema":sch,"value":_vm.form['meta'][sch.field]},on:{"input":function($event){_vm.form['meta'][sch.field] = $event}}})],1)}),0)]):_vm._e(),_vm._v(" "),_c('b-field',{attrs:{"label":"Taxonomy","label-position":"on-border"}},[_c('div',{staticClass:"card"},[_c('div',{staticClass:"card-content"},_vm._l((_vm.publication.options['taxonomies']),function(tax){return _c('b-field',{key:tax.id},[_c('TaxSelector',{attrs:{"taxonomy":tax.label,"value":_vm.form['terms'] ? _vm.form['terms'] : []},on:{"select":_vm.addTerm}})],1)}),1)])])],1):_vm._e()]),_vm._ssrNode(" "),_c('transition',[(!_vm.showOption)?_c('div',[(_vm.form.post_type === 'link')?_c('b-field',[_c('b-input',{attrs:{"expanded":"","icon":"link","placeholder":"https://fournalist.com"},model:{value:(_vm.url),callback:function ($$v) {_vm.url=$$v},expression:"url"}}),_vm._v(" "),_c('div',{staticClass:"control"},[_c('div',{staticClass:"button",on:{"click":_vm.fetchURL}},[_vm._v("Fetch")])])],1):_vm._e(),_vm._v(" "),(_vm.form.post_type === 'link')?_c('b-field',[_c('b-input',{attrs:{"expanded":"","icon":"format-text","placeholder":"Link title"},model:{value:(_vm.form.meta.archor),callback:function ($$v) {_vm.$set(_vm.form.meta, "archor", $$v)},expression:"form.meta.archor"}})],1):_vm._e(),_vm._v(" "),_c('b-field',[_c('b-input',{attrs:{"expanded":"","placeholder":"Title"},model:{value:(_vm.form.title),callback:function ($$v) {_vm.$set(_vm.form, "title", $$v)},expression:"form.title"}})],1),_vm._v(" "),_c('b-field',[_c('b-input',{attrs:{"placeholder":"Description","rows":2,"type":"textarea"},model:{value:(_vm.form.description),callback:function ($$v) {_vm.$set(_vm.form, "description", $$v)},expression:"form.description"}})],1),_vm._v(" "),_c('b-field',[_c('editor',{attrs:{"height":"500"},model:{value:(_vm.form.content),callback:function ($$v) {_vm.$set(_vm.form, "content", $$v)},expression:"form.content"}})],1)],1):_vm._e()])],2),_vm._ssrNode(" "),_vm._ssrNode("<div class=\"level is-mobile\" data-v-39f28e3c>","</div>",[_vm._ssrNode("<div class=\"level-left\" data-v-39f28e3c>","</div>",[_vm._ssrNode("<div class=\"button\" data-v-39f28e3c>","</div>",[_c('user',{attrs:{"value":_vm.currentUser,"avatar-size":"is-24x24"}})],1)]),_vm._ssrNode(" <div class=\"level-right\" data-v-39f28e3c><div class=\"button is-dark\" data-v-39f28e3c>Submit</div></div>")],2)],2)]):_vm._e()}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./pages/post/index.vue?vue&type=template&id=304dc7b8&scoped=true&
+// CONCATENATED MODULE: ./pages/post/index.vue?vue&type=template&id=39f28e3c&scoped=true&
 
 // CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./components/Editor.vue?vue&type=template&id=ef72aa2a&
 var Editorvue_type_template_id_ef72aa2a_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"content"},[_c('tiny-editor',{attrs:{"api-key":"sgdhe7czf3wgmsipn054ql44mi1ce2khbevpw9atwsq3ir1q","init":_vm.editorConfig},model:{value:(_vm.editorData),callback:function ($$v) {_vm.editorData=$$v},expression:"editorData"}})],1)}
@@ -1422,6 +1422,22 @@ var external_buefy_ = __webpack_require__(2);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1521,6 +1537,11 @@ const DEFAULT_POST = {
 
     submit() {
       this.loading.submit = true;
+
+      if (this.form.post_type === 'link' && this.url && !this.form.meta.url) {
+        this.form.meta.url = this.url;
+      }
+
       this.$axios.$post(this.uri, { ...this.cleanData(this.form),
         publications: [this.publication.id]
       }).then(res => {
@@ -1572,7 +1593,7 @@ var post_component = Object(componentNormalizer["a" /* default */])(
   staticRenderFns,
   false,
   post_injectStyles,
-  "304dc7b8",
+  "39f28e3c",
   "34e47a56"
   
 )

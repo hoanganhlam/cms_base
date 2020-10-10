@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <div class="items" v-else>
-                    <item :visible-items="['vote', 'meta', 'description']" v-for="item in response.results"
+                    <item :visible-items="visibleItems('list')" v-for="item in response.results"
                           :key="item.id"
                           :value="item"/>
                 </div>
@@ -137,10 +137,11 @@
                 <div v-else class="columns">
                     <div class="column">
                         <div class="post-content">
-                            <item is-full :value="post" :visible-items="['vote', 'meta', 'description', 'hashtag']">
-                                <div class="card">
+                            <item is-full :value="post" :visible-items="visibleItems('detail')">
+                                <div class="content" v-html="toHTML(post.content)"></div>
+                                <div class="card" v-if="publication.options['allow_comment']">
                                     <div class="card-content">
-                                        <comment-form/>
+                                        <comment-form :post="post"/>
                                     </div>
                                 </div>
                                 <div class="section" v-if="hashTags.length">
@@ -274,8 +275,19 @@ export default {
         this.loading = false;
     },
     watch: {
-        '$route.query': '$fetch'
+        '$route.query'() {
+            this.$fetch();
+            this.toTop();
+        }
     },
+    methods: {
+        visibleItems(flag) {
+            return [
+                ...['description', 'hashtag'],
+                ...this.publication && this.publication.options['allow_vote'] ? ['vote'] : []
+            ]
+        }
+    }
 }
 </script>
 

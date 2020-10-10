@@ -71,6 +71,10 @@ main.main {
 .header {
     .header-body {
         padding: 1rem 0;
+
+        .level-left {
+            text-align: center;
+        }
     }
 
     .navbar {
@@ -87,7 +91,7 @@ main.main {
         display: inline-block;
         border: 1px solid #DDD;
         padding: 0 1rem;
-        width: 100%;
+        margin: 0 auto;
 
         .is-uppercase {
             max-width: 220px;
@@ -138,16 +142,6 @@ main.main {
         border-top: 1px dashed #DDD;
         margin-top: .5rem;
         padding-top: 1rem;
-    }
-
-
-    .vote {
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-        border: 1px solid #EEE;
-        padding: .125rem .25rem;
-        font-size: 12px;
     }
 
     .meta {

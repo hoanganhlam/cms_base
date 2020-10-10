@@ -8,7 +8,7 @@
             <div class="level-left">
                 <div class="level-item">
                     <div class="button is-small">
-                        <user avatar-size="is-16x16"/>
+                        <user :value="currentUser" avatar-size="is-16x16"/>
                     </div>
                 </div>
                 <slot></slot>
@@ -35,6 +35,7 @@ export default {
         parent: {
             default: null
         },
+        post: Object
     },
     data() {
         return {

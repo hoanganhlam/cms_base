@@ -1,30 +1,34 @@
 <template>
-    <main class="main" v-if="publication">
+    <main class="main" v-if="publication && publication.options['allow_guess_post']">
         <div class="container">
-            <b-field>
-                <div class="control">
-                    <b-dropdown v-model="form.post_type">
-                        <div class="button" slot="trigger">
-                            <span class="is-capitalized">{{ form.post_type }}</span>
+            <div class="level is-mobile">
+                <div class="level-left">
+                    <b-field>
+                        <div class="control">
+                            <div class="button is-static">New</div>
                         </div>
-                        <b-dropdown-item v-for="t in publication.options['post_types']" :key="t.label" :value="t.label">
-                            <span>{{ t.title }}</span>
-                        </b-dropdown-item>
-                    </b-dropdown>
+                        <div class="control">
+                            <b-dropdown v-model="form.post_type">
+                                <div class="button" slot="trigger">
+                                    <span class="is-capitalized">{{ form.post_type }}</span>
+                                    <b-icon icon="chevron-down" size="is-small"></b-icon>
+                                </div>
+                                <b-dropdown-item v-for="t in publication.options['post_types']" :key="t.label"
+                                                 :value="t.label">
+                                    <span>{{ t.title }}</span>
+                                </b-dropdown-item>
+                            </b-dropdown>
+                        </div>
+                    </b-field>
                 </div>
-                <b-input v-model="form.title" expanded placeholder="Title"></b-input>
-                <div class="control">
-                    <div class="button" @click="showOption = !showOption" v-bind:class="{'is-success': showOption}">
-                        <b-icon size="is-small" icon="cogs"></b-icon>
+                <div class="level-right">
+                    <div class="control">
+                        <div class="button" @click="showOption = !showOption" v-bind:class="{'is-success': showOption}">
+                            <b-icon size="is-small" icon="cogs"></b-icon>
+                        </div>
                     </div>
                 </div>
-            </b-field>
-            <b-field v-if="form.post_type === 'link'">
-                <b-input expanded v-model="url" icon="link" placeholder="https://fournalist.com"/>
-                <div class="control">
-                    <div class="button" @click="fetchURL">Fetch</div>
-                </div>
-            </b-field>
+            </div>
             <div style="margin-bottom: .75rem;">
                 <transition name="fade">
                     <div v-if="showOption">
@@ -40,7 +44,7 @@
                             <div class="card">
                                 <div class="card-content">
                                     <b-field v-for="tax in publication.options['taxonomies']" :key="tax.id">
-                                        <TaxSelector size="is-small" :taxonomy="tax.label"
+                                        <TaxSelector :taxonomy="tax.label"
                                                      :value="form['terms'] ? form['terms'] : []"
                                                      @select="addTerm"/>
                                     </b-field>
@@ -51,6 +55,18 @@
                 </transition>
                 <transition>
                     <div v-if="!showOption">
+                        <b-field v-if="form.post_type === 'link'">
+                            <b-input expanded v-model="url" icon="link" placeholder="https://fournalist.com"/>
+                            <div class="control">
+                                <div class="button" @click="fetchURL">Fetch</div>
+                            </div>
+                        </b-field>
+                        <b-field v-if="form.post_type === 'link'">
+                            <b-input expanded v-model="form.meta.archor" icon="format-text" placeholder="Link title"/>
+                        </b-field>
+                        <b-field>
+                            <b-input v-model="form.title" expanded placeholder="Title"></b-input>
+                        </b-field>
                         <b-field>
                             <b-input v-model="form.description" placeholder="Description" :rows="2" type="textarea"/>
                         </b-field>
@@ -159,6 +175,9 @@ export default {
         },
         submit() {
             this.loading.submit = true;
+            if (this.form.post_type === 'link' && this.url && !this.form.meta.url) {
+                this.form.meta.url = this.url;
+            }
             this.$axios.$post(this.uri, {
                 ...this.cleanData(this.form),
                 publications: [this.publication.id]
