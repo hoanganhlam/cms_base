@@ -8,7 +8,7 @@
             <div class="level-left">
                 <div class="level-item">
                     <div class="button is-small">
-                        <user :value="currentUser" avatar-size="is-16x16"/>
+                        <user :value="currentUser ? currentUser : undefined" avatar-size="is-16x16"/>
                     </div>
                 </div>
                 <slot></slot>

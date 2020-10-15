@@ -63,13 +63,12 @@ export default async function (context, inject) {
         if (hostname.includes('127.0.0.1')) {
             hostname = 'pushfact.com'
         }
-        const publication = await context.$axios.$get(`/pub/?host=` + hostname);
-        await context.store.commit('config/SET_PUBLICATION', publication);
         let token = await getToken();
         await setToken(token);
+        const {p, u} = await context.$axios.$get(`/init/?host=` + hostname);
+        await context.store.commit('config/SET_PUBLICATION', p);
         if (token) {
-            let user = await getUser();
-            await setUser(user);
+            await setUser(u);
         }
     };
 

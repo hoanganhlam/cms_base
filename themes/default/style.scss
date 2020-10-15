@@ -168,6 +168,10 @@ main.main {
     }
 }
 
+h4 .widget-title {
+    font-size: 1rem;
+}
+
 .avatar {
     position: relative;
     display: flex;
@@ -261,6 +265,10 @@ main.main {
         align-items: center;
         justify-content: center;
     }
+}
+
+.subscribe-box {
+    margin-bottom: 2rem !important;
 }
 
 @media screen and (max-width: 768px) {

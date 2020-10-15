@@ -3,10 +3,11 @@
         <div class="media-content" v-bind:class="{'content': isFull}">
             <h1 v-if="isFull">{{ value.title }}</h1>
             <h4 v-else>
+                <b-icon :icon="icon()" size="is-small"></b-icon>
                 <n-link class="widget-title" :to="`/${value['post_type']}/${value.slug}`">{{ value.title }}
                 </n-link>
             </h4>
-            <p class="notification" v-if="visibleItems.includes('description')">{{ value.description }}</p>
+            <p class="card is-light notification" v-if="visibleItems.includes('description')">{{value.description }}</p>
             <div class="meta">
                 <div class="buttons">
                     <div v-if="visibleItems.includes('vote')" class="button is-text is-small"
@@ -58,6 +59,12 @@ export default {
                 return this.value['terms'].filter(x => x.taxonomy === 'object');
             }
             return []
+        }
+    },
+    methods: {
+        icon() {
+            let arr = ['triangle-outline', 'square-outline', 'checkbox-blank-circle-outline'];
+            return arr[Math.floor(Math.random() * arr.length)];
         }
     }
 }

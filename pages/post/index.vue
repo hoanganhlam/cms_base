@@ -79,7 +79,7 @@
             <div class="level is-mobile">
                 <div class="level-left">
                     <div class="button">
-                        <user :value="currentUser" avatar-size="is-24x24"></user>
+                        <user :value="currentUser ? currentUser : undefined" avatar-size="is-24x24"/>
                     </div>
                 </div>
                 <div class="level-right">

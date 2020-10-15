@@ -1,5 +1,5 @@
 <template>
-    <b-dropdown append-to-body v-if="!Boolean(currentUser)">
+    <b-dropdown position="is-bottom-left" append-to-body v-if="!Boolean(currentUser)">
         <div class="buttons" slot="trigger">
             <button class="button normalize is-light">Log in</button>
         </div>

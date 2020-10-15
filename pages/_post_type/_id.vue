@@ -2,7 +2,7 @@
     <main class="main">
         <div class="container">
             <div v-if="isHome || isTax" class="home">
-                <div class="notification is-light card">
+                <div class="subscribe-box notification is-light card">
                     <div class="columns" style="align-items: center;">
                         <div class="column">
                             <h4 class="widget-title">Subscribe to get daily news</h4>
@@ -139,11 +139,7 @@
                         <div class="post-content">
                             <item is-full :value="post" :visible-items="visibleItems('detail')">
                                 <div class="content" v-html="toHTML(post.content)"></div>
-                                <div class="card" v-if="publication.options['allow_comment']">
-                                    <div class="card-content">
-                                        <comment-form :post="post"/>
-                                    </div>
-                                </div>
+                                <comment-form v-if="publication.options['allow_comment']" :post="post"/>
                                 <div class="section" v-if="hashTags.length">
                                     <div class="widget-title">
                                         <b-icon size="is-small" icon="pound"/>
@@ -198,24 +194,60 @@ export default {
             taxonomy: {},
             query: {
                 page_size: 10,
-                page: 1
+                page: 1,
+                show_cms: true
             },
             loading: false
         }
     },
     head() {
         let title = "CMS";
+        let destination = null;
         if (this.publication) {
             if (this.isHome) {
                 title = this.publication.title;
+                destination = this.publication.description;
             } else if (this.isTax) {
 
             } else if (this.isPost && this.post) {
                 title = this.post.title;
+                destination = this.post.description;
             }
         }
         return {
-            title: title + ` - ${this.publication.host}`
+            title: title + ` - ${this.publication.host}`,
+            meta: [
+                {
+                    hid: 'og:title',
+                    name: 'og:title',
+                    content: title
+                },
+                {
+                    hid: 'description',
+                    name: 'description',
+                    content: destination
+                },
+                {
+                    hid: 'og:description',
+                    name: 'og:description',
+                    content: destination
+                },
+                {
+                    hid: 'og:url',
+                    name: 'og:url',
+                    content: `${this.publication.url}/${this.$route.path}`
+                },
+                {
+                    hid: 'og:type',
+                    name: 'og:type',
+                    content: this.isHome ? 'website' : 'article'
+                },
+                ...this.media ? [{
+                    hid: 'og:image',
+                    name: 'og:image',
+                    content: this.media.sizes['full_size']
+                }] : []
+            ]
         }
     },
     computed: {
@@ -248,6 +280,19 @@ export default {
         },
         publication() {
             return this.$store.state.config.publication
+        },
+        media() {
+            if (this.post) {
+                if (this.post.media) {
+                    return this.post.media;
+                } else if (this.post['medias'] && this.post['medias'].length) {
+                    return this.post['medias'][0];
+                }
+            }
+            if (this.publication && this.publication.media) {
+                return this.publication.media;
+            }
+            return null
         }
     },
     async fetch() {
@@ -269,7 +314,11 @@ export default {
                     params: this.query
                 });
             } else {
-                this.post = await this.$axios.$get(`${uri}/posts/${p.id}/`);
+                this.post = await this.$axios.$get(`${uri}/posts/${p.id}/`, {
+                    params: {
+                        show_cms: true
+                    }
+                });
             }
         }
         this.loading = false;
