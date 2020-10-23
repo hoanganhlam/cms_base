@@ -20,49 +20,53 @@
                         </div>
                     </div>
                 </div>
-                <div class="items" v-if="loading">
-                    <div class="item media" v-for="i in 10" :key="i">
-                        <div class="media-content">
-                            <b-skeleton/>
-                            <b-skeleton :width="`${rdNum(1, 100)}%`"/>
-                            <div class="meta">
-                                <div class="buttons">
-                                    <div class="button is-small is-light">
-                                        <b-skeleton height="16" width="60"/>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="items" v-if="loading">
+                            <div class="item media" v-for="i in 10" :key="i">
+                                <div class="media-content">
+                                    <b-skeleton/>
+                                    <b-skeleton :width="`${rdNum(1, 100)}%`"/>
+                                    <div class="meta">
+                                        <div class="buttons">
+                                            <div class="button is-small is-light">
+                                                <b-skeleton height="16" width="60"/>
+                                            </div>
+                                            <div class="button is-small is-text">
+                                                <b-skeleton height="16" width="80"/>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="button is-small is-text">
-                                        <b-skeleton height="16" width="80"/>
-                                    </div>
+                                </div>
+                                <div class="media-right">
+                                    <b-skeleton :width="35" height="50"/>
                                 </div>
                             </div>
                         </div>
-                        <div class="media-right">
-                            <b-skeleton :width="35" height="50"/>
+                        <div class="items" v-else>
+                            <item :visible-items="visibleItems('list')" v-for="item in response.results"
+                                  :key="item.id"
+                                  :value="item"/>
                         </div>
-                    </div>
-                </div>
-                <div class="items" v-else>
-                    <item :visible-items="visibleItems('list')" v-for="item in response.results"
-                          :key="item.id"
-                          :value="item"/>
-                </div>
-                <div class="level is-mobile">
-                    <div class="level-left">
-                        <div class="buttons">
-                            <n-link :to="`?page=${previous}`" class="button" v-if="previous">
-                                <b-icon icon="chevron-left"></b-icon>
-                                <span>Previous</span>
-                            </n-link>
-                            <n-link :to="`?page=${next}`" class="button" v-if="next">
-                                <span>Next</span>
-                                <b-icon icon="chevron-right"></b-icon>
-                            </n-link>
-                        </div>
-                    </div>
-                    <div class="level-right">
-                        <div class="tags has-addons">
-                            <span class="tag is-large">Page</span>
-                            <span class="tag is-large is-primary">{{ query.page }}</span>
+                        <div class="level is-mobile">
+                            <div class="level-left">
+                                <div class="buttons">
+                                    <n-link :to="`?page=${previous}`" class="button" v-if="previous">
+                                        <b-icon icon="chevron-left"></b-icon>
+                                        <span>Previous</span>
+                                    </n-link>
+                                    <n-link :to="`?page=${next}`" class="button" v-if="next">
+                                        <span>Next</span>
+                                        <b-icon icon="chevron-right"></b-icon>
+                                    </n-link>
+                                </div>
+                            </div>
+                            <div class="level-right">
+                                <div class="tags has-addons">
+                                    <span class="tag is-large">Page</span>
+                                    <span class="tag is-large is-primary">{{ query.page }}</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

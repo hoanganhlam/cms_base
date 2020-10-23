@@ -3,7 +3,6 @@
         <div class="media-content" v-bind:class="{'content': isFull}">
             <h1 v-if="isFull">{{ value.title }}</h1>
             <h4 v-else>
-                <b-icon :icon="icon()" size="is-small"></b-icon>
                 <n-link class="widget-title" :to="`/${value['post_type']}/${value.slug}`">{{ value.title }}
                 </n-link>
             </h4>

@@ -33,7 +33,7 @@ body {
 }
 
 main.main {
-    padding: 1.5rem 0;
+    padding: 0 0 1.5rem;
     min-height: calc(100vh - 133px);
 }
 
@@ -170,6 +170,8 @@ main.main {
 
 h4 .widget-title {
     font-size: 1rem;
+    font-weight: 500;
+    line-height: 1;
 }
 
 .avatar {
@@ -268,7 +270,7 @@ h4 .widget-title {
 }
 
 .subscribe-box {
-    margin-bottom: 2rem !important;
+    margin-bottom: 1rem !important;
 }
 
 @media screen and (max-width: 768px) {
