@@ -4,7 +4,7 @@
             <b-input :rows="size === 'is-small' ? 1 : 2" type="textarea" placeholder="Add a comment..."
                      v-model="comment"/>
         </b-field>
-        <div class="level v-center">
+        <div class="level is-mobile v-center">
             <div class="level-left">
                 <div class="level-item">
                     <div class="button is-small">

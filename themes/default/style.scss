@@ -71,10 +71,6 @@ main.main {
 .header {
     .header-body {
         padding: 1rem 0;
-
-        .level-left {
-            text-align: center;
-        }
     }
 
     .navbar {
@@ -89,8 +85,6 @@ main.main {
 
     .logo {
         display: inline-block;
-        border: 1px solid #DDD;
-        padding: 0 1rem;
         margin: 0 auto;
 
         .is-uppercase {
@@ -271,6 +265,11 @@ h4 .widget-title {
 
 .subscribe-box {
     margin-bottom: 1rem !important;
+}
+
+.content {
+    font-family: Georgia, serif;
+    font-size: 16px;
 }
 
 @media screen and (max-width: 768px) {
