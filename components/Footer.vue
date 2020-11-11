@@ -1,6 +1,6 @@
 <template>
     <footer class="footer">
-        <div class="content has-text-centered">
+        <div class="has-text-centered">
             <p>{{publication.host}} © 2020 All Rights Reserved</p>
         </div>
     </footer>

@@ -7,7 +7,7 @@
         <div class="level is-mobile v-center">
             <div class="level-left">
                 <div class="level-item">
-                    <div class="button is-small">
+                    <div class="button is-white is-small">
                         <user :value="currentUser ? currentUser : undefined" avatar-size="is-16x16"/>
                     </div>
                 </div>
@@ -60,5 +60,7 @@ export default {
 </script>
 
 <style scoped>
-
+#response {
+    margin-bottom: 1rem;
+}
 </style>

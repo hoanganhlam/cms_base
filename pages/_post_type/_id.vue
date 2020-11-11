@@ -140,10 +140,37 @@
                 </div>
                 <div v-else class="columns">
                     <div class="column">
+                        <div class="field has-addons">
+                            <div class="control">
+                                <n-link to="/" class="button is-small is-light">
+                                    <b-icon icon="chevron-left" size="is-small"></b-icon>
+                                    <span>Back</span>
+                                </n-link>
+                            </div>
+                            <div class="control">
+                                <div class="button is-small is-white">
+                                    <span>Home</span>
+                                </div>
+                            </div>
+                        </div>
                         <div class="post-content">
                             <item is-full :value="post" :visible-items="visibleItems('detail')">
                                 <div class="content" v-html="toHTML(post.content)"></div>
                                 <comment-form v-if="publication.options['allow_comment']" :post="post"/>
+                                <div class="columns is-mobile is-variable is-2">
+                                    <div class="column">
+                                        <div class="button is-fullwidth is-light">
+                                            <b-icon size="is-small" icon="chevron-left"></b-icon>
+                                            <span>Previous</span>
+                                        </div>
+                                    </div>
+                                    <div class="column">
+                                        <div class="button is-fullwidth is-light">
+                                            <span>Next</span>
+                                            <b-icon size="is-small" icon="chevron-right"></b-icon>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="section" v-if="hashTags.length">
                                     <div class="widget-title">
                                         <b-icon size="is-small" icon="pound"/>
@@ -157,8 +184,6 @@
                                 </div>
                             </item>
                         </div>
-                    </div>
-                    <div class="column is-4">
                         <div class="section" v-if="post['related']">
                             <h4 class="widget-title">Related</h4>
                             <div class="card">
@@ -169,6 +194,26 @@
                                             <span>{{ p.title.substr(0, 100) }}</span>
                                         </n-link>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-4">
+                        <div class="subscribe-box notification is-light card">
+                            <div class="columns is-variable is-1 is-multiline">
+                                <div class="column is-12">
+                                    <h4 class="widget-title">Subscribe to get daily news</h4>
+                                    <b-checkbox size="is-small">I agree to subscribe to the newsletter. See our Privacy
+                                        Policy.
+                                    </b-checkbox>
+                                </div>
+                                <div class="column is-12">
+                                    <b-field>
+                                        <b-input icon="email-outline" expanded placeholder="Your Email"/>
+                                        <div class="control">
+                                            <div class="button is-primary">Signup</div>
+                                        </div>
+                                    </b-field>
                                 </div>
                             </div>
                         </div>

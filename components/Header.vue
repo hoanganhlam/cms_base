@@ -1,5 +1,5 @@
 <template>
-    <header class="header">
+    <header class="header has-background-dark">
         <div class="header-body">
             <div class="container">
                 <div class="level">
