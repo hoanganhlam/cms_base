@@ -192,17 +192,19 @@
                                     <div class="article">
                                         <div class="content" v-html="toHTML(post.content)"></div>
                                         <div class="columns is-mobile is-variable is-2">
-                                            <div class="column">
-                                                <div class="button is-fullwidth is-light">
+                                            <div class="column" v-if="post.previous">
+                                                <n-link :to="`/${post.previous.post_type}/${post.previous.slug}`"
+                                                        class="button is-fullwidth is-light">
                                                     <b-icon size="is-small" icon="chevron-left"></b-icon>
                                                     <span>Previous</span>
-                                                </div>
+                                                </n-link>
                                             </div>
-                                            <div class="column">
-                                                <div class="button is-fullwidth is-light">
+                                            <div class="column" v-if="post.next">
+                                                <n-link :to="`/${post.next.post_type}/${post.next.slug}`"
+                                                        class="button is-fullwidth is-light">
                                                     <span>Next</span>
                                                     <b-icon size="is-small" icon="chevron-right"></b-icon>
-                                                </div>
+                                                </n-link>
                                             </div>
                                         </div>
                                     </div>
@@ -453,9 +455,6 @@ export default {
             } else {
                 let arr = p.id.split("-");
                 this.post = await this.$axios.$post(`${uri}/posts/${arr[arr.length - 1]}/`, {
-                    param: {
-                        slug: this.$route.params.id
-                    },
                     schema: schema.post_detail
                 }, {
                     params: {

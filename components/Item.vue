@@ -27,7 +27,7 @@
                         <span>{{ tax.term.title }}</span>
                     </n-link>
                     <n-link :to="`/${value['post_type']}/${value.slug}`" class="button is-text is-small">
-                        <span>20 minutes ago</span>
+                        <span>{{ timeSince(new Date(value.created)) }} ago</span>
                     </n-link>
                     <a v-if="value.meta.source" :href="value.meta.source.href"
                        target="_blank"

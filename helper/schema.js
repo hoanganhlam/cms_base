@@ -44,7 +44,14 @@ export const post_detail = [
                 ]
             }
         ]
-    }
+    },
+    {
+        "next": ["id", "slug", "title"]
+    },
+    {
+        "previous": ["id", "slug", "title"]
+    },
+    "created"
 ]
 export const post_list = [
     "id",
@@ -52,6 +59,7 @@ export const post_list = [
     "slug",
     "description",
     "post_type",
+    "created",
     {
         "media": [
             "title",
@@ -62,5 +70,6 @@ export const post_list = [
         "meta": [
             "source"
         ]
-    }
+    },
+    "user"
 ]
