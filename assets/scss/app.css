@@ -1,10 +1,10 @@
 /*
 Error: File to import not found or unreadable: ~bulma/bulma.sass.
-        on line 8 of ../../themes/default/style.scss
+        on line 11 of ../../themes/default/style.scss
         from line 1 of app.scss
 
 Backtrace:
-../../themes/default/style.scss:8
+../../themes/default/style.scss:11
 app.scss:1
 /Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/import_node.rb:67:in `rescue in import'
 /Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/import_node.rb:44:in `import'
@@ -56,4 +56,4 @@ app.scss:1
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: File to import not found or unreadable: ~bulma/bulma.sass.\A         on line 8 of ../../themes/default/style.scss\A         from line 1 of app.scss"; }
+  content: "Error: File to import not found or unreadable: ~bulma/bulma.sass.\A         on line 11 of ../../themes/default/style.scss\A         from line 1 of app.scss"; }

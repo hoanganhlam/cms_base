@@ -1,13 +1,15 @@
 $link: #333333;
 $card-content-padding: 1rem;
 $body-font-size: 14px;
+$body-family: 'Poppins', sans-serif;
 $footer-padding: 1rem;
 $section-padding: 1rem 0;
 $radius: 0;
 $card-radius: 0;
+$navbar-height: 2rem;
+$navbar-item-active-color: red;
 @import "~bulma/bulma.sass";
 @import "~buefy/src/scss/buefy";
-
 
 html {
     scroll-behavior: smooth;
@@ -34,7 +36,7 @@ body {
 
 main.main {
     padding: 1rem 0 1.5rem;
-    min-height: calc(100vh - 125px);
+    min-height: calc(100vh - 110px);
 }
 
 .notification {
@@ -71,23 +73,12 @@ main.main {
 .header {
     border-bottom: 1px solid white;
 
-    .header-body {
-        padding: .5rem 0;
-    }
-
-    .navbar {
-        .container {
-            min-height: 2.25rem;
-        }
-
-        .level {
-            width: 100%;
-        }
+    .navbar-item {
+        padding: 0 0.75rem;
     }
 
     .logo {
         display: inline-block;
-        margin: 0 auto;
 
         .is-uppercase {
             max-width: 220px;
@@ -130,28 +121,45 @@ main.main {
 }
 
 .items {
-    margin-bottom: 1.5rem;
+    margin-bottom: .75rem;
 }
 
 .item {
     &.media + .media {
         border-top: 1px dashed #DDD;
-        margin-top: .5rem;
+        margin-top: .75rem;
         padding-top: .5rem;
     }
 
     .meta {
         margin-top: .5rem;
+        margin-left: -.5rem;
 
         &:not(:last-child) {
             margin-bottom: .5rem;
         }
+
+        .buttons .button:not(:last-child):not(.is-fullwidth) {
+            margin-right: 0;
+        }
     }
 
-    .notification:not(:last-child) {
-        margin-bottom: .5rem;
+    .description {
+        color: #888888;
         margin-top: .5rem;
-        padding: .75rem;
+    }
+
+    &:hover {
+        .description {
+            color: #333333;
+        }
+    }
+}
+
+
+.post {
+    .description {
+        font-size: 1rem;
     }
 }
 
@@ -160,18 +168,13 @@ main.main {
     font-weight: bold;
 
     &:not(:last-child) {
-        margin-bottom: 1rem;
+        margin-bottom: .5rem;
     }
 }
 
 h4 .widget-title {
-    font-size: 1.325rem;
+    font-size: 1rem;
     line-height: 1;
-}
-
-.title,
-h4 .widget-title {
-    font-weight: 500 !important;
 }
 
 .avatar {
@@ -284,6 +287,12 @@ h4 .widget-title {
     }
 }
 
+.widget {
+    .menu-list {
+        margin: 0 -.75rem;
+    }
+}
+
 .box:not(:last-child), .content:not(:last-child), .notification:not(:last-child), .progress:not(:last-child), .table:not(:last-child), .table-container:not(:last-child), .title:not(:last-child), .subtitle:not(:last-child), .block:not(:last-child), .highlight:not(:last-child), .breadcrumb:not(:last-child), .level:not(:last-child), .message:not(:last-child), .pagination:not(:last-child), .tabs:not(:last-child) {
     margin-bottom: 1rem;
 }
@@ -299,10 +308,6 @@ h4 .widget-title {
 
     .media-content {
         overflow-x: unset;
-    }
-
-    .navbar {
-        padding: 1rem 0 0;
     }
 
     .level-left + .level-right {

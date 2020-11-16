@@ -65,7 +65,20 @@ export default async function (context, inject) {
         }
         let token = await getToken();
         await setToken(token);
-        const {p, u} = await context.$axios.$get(`/init/?host=` + hostname);
+        const {p, u} = await context.$axios.$post(`/${hostname}/init/`, {
+            schema: [
+                {
+                    "p": [
+                        "id",
+                        "title",
+                        "description",
+                        "options",
+                        "host"
+                    ]
+                },
+                "u"
+            ]
+        });
         await context.store.commit('config/SET_PUBLICATION', p);
         if (token) {
             await setUser(u);

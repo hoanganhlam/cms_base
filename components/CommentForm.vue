@@ -60,7 +60,4 @@ export default {
 </script>
 
 <style scoped>
-#response {
-    margin-bottom: 1rem;
-}
 </style>

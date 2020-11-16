@@ -80,7 +80,13 @@ Vue.mixin({
         },
         toHTML(val) {
             return val ? converter.makeHtml(val) : '';
-        }
+        },
+        cleanURI(url) {
+            if (url) {
+                return url.split("?")[0].split("#")[0];
+            }
+            return null
+        },
     },
     computed: {
         currentUser: {

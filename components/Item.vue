@@ -1,15 +1,18 @@
 <template>
     <div class="media item" v-if="value.id">
+        <div class="media-left" v-if="!isFull && value.media">
+            <avatar class="is-96x96 is-bordered" :value="value.media"></avatar>
+        </div>
         <div class="media-content">
-            <h1 class="title is-2" v-if="isFull">{{ value.title }}</h1>
+            <h1 class="title" v-if="isFull">{{ value.title }}</h1>
             <h4 v-else>
                 <n-link class="widget-title" :to="`/${value['post_type']}/${value.slug}`">{{ value.title }}
                 </n-link>
             </h4>
-            <p class="card is-light notification" v-if="visibleItems.includes('description')">{{value.description }}</p>
+            <p class="description" v-if="visibleItems.includes('description')">{{ value.description }}</p>
             <div class="meta">
                 <div class="buttons">
-                    <div v-if="visibleItems.includes('vote')" class="button is-text is-small"
+                    <div v-if="value['vote_object'] && visibleItems.includes('vote')" class="button is-text is-small"
                          v-bind:class="{'is-active': value['vote_object']['is-voted']}">
                         <b-icon class="is-clickable"
                                 :icon="!value['vote_object']['is-voted'] ? 'chevron-up' : 'chevron-down'"/>
@@ -26,11 +29,11 @@
                     <n-link :to="`/${value['post_type']}/${value.slug}`" class="button is-text is-small">
                         <span>20 minutes ago</span>
                     </n-link>
-                    <a v-if="value.meta.url" :href="value.meta.url"
+                    <a v-if="value.meta.source" :href="value.meta.source.href"
                        target="_blank"
                        class="button is-text is-small">
                         <b-icon icon="link" size="is-small"></b-icon>
-                        <span v-if="value.meta.archor">{{ value.meta.archor }}</span>
+                        <span v-if="value.meta.source.archor">{{ value.meta.source.archor }}</span>
                     </a>
                 </div>
             </div>

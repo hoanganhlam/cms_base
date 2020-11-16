@@ -1,35 +1,32 @@
 <template>
-    <header class="header has-background-dark">
-        <div class="header-body">
+    <header class="header">
+        <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
             <div class="container">
-                <div class="level">
-                    <div class="level-left">
-                        <n-link v-if="partHost" class="logo" to="/">
-                            <span class="is-uppercase">{{ partHost.name }}</span>
-                            <span>.{{ partHost.ext }}</span>
-                        </n-link>
-                        <n-link v-else class="logo" to="/">
-                            <span class="is-uppercase">FOURNALIST</span>
-                            <span>.com</span>
-                        </n-link>
-                    </div>
-                    <div class="level-right">
-                        <b-field grouped>
-                            <div class="control" v-if="publication.options['allow_guess_post']">
-                                <n-link to="/post" class="button is-success">
-                                    <span>Create</span>
-                                    <b-icon size="is-small" icon="pen"></b-icon>
-                                </n-link>
-                            </div>
-                            <b-input expanded icon="magnify" placeholder="Search..."></b-input>
-                            <div class="control">
-                                <login-bar></login-bar>
-                            </div>
-                        </b-field>
+                <div class="navbar-brand">
+                    <n-link v-if="partHost" class="navbar-item logo" to="/">
+                        <span class="is-uppercase">{{ partHost.name }}</span>
+                        <span>.{{ partHost.ext }}</span>
+                    </n-link>
+                    <n-link v-else class="navbar-item logo" to="/">
+                        <span class="is-uppercase">FOURNALIST</span>
+                        <span>.com</span>
+                    </n-link>
+                    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+                       data-target="navbarBasicExample">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+                <div id="navbarBasicExample" class="navbar-menu">
+                    <div class="navbar-end">
+                        <div class="navbar-item">
+                            <login-bar></login-bar>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </nav>
     </header>
 </template>
 
@@ -59,6 +56,14 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss">
+.sub-nav {
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.05), 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+    height: 3rem;
+    margin-bottom: 1rem;
 
+    .navbar-start {
+        margin-left: -.75rem;
+    }
+}
 </style>
