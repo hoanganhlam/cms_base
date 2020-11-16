@@ -46,10 +46,10 @@ export const post_detail = [
         ]
     },
     {
-        "next": ["id", "slug", "title"]
+        "next": ["id", "slug", "title", "post_type"]
     },
     {
-        "previous": ["id", "slug", "title"]
+        "previous": ["id", "slug", "title", "post_type"]
     },
     "created"
 ]

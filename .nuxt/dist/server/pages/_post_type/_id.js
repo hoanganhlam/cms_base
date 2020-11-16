@@ -112,9 +112,9 @@ const post_detail = ["id", "title", "slug", "description", {
     "term": ["title", "slug"]
   }]
 }, {
-  "next": ["id", "slug", "title"]
+  "next": ["id", "slug", "title", "post_type"]
 }, {
-  "previous": ["id", "slug", "title"]
+  "previous": ["id", "slug", "title", "post_type"]
 }, "created"];
 const post_list = ["id", "title", "slug", "description", "post_type", "created", {
   "media": ["title", "sizes"]
