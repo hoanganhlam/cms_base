@@ -112,7 +112,7 @@ export default {
         }
     },
     cache: {
-        useHostPrefix: false,
+        useHostPrefix: true,
         pages: [
             // you can also pass a regular expression to test a path
             '/',
