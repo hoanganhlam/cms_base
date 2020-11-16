@@ -445,6 +445,10 @@ export default {
                             ]
                         }
                     ]
+                }, {
+                    params: {
+                        force: q.force
+                    }
                 });
             } else {
                 let arr = p.id.split("-");
@@ -453,6 +457,10 @@ export default {
                         slug: this.$route.params.id
                     },
                     schema: schema.post_detail
+                }, {
+                    params: {
+                        force: q.force
+                    }
                 });
             }
         }
