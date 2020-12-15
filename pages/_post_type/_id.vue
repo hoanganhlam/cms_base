@@ -125,9 +125,9 @@
                                     <p class="menu-label">Popular topics</p>
                                     <ul class="menu-list">
                                         <li v-for="term in home.terms" :key="term.id">
-                                            <n-link :to="`/${term.slug}`">
+                                            <n-link :to="`/${term.term['slug']}`">
                                                 <b-icon icon="plus" size="is-small"></b-icon>
-                                                <span>{{ term.title }}</span>
+                                                <span>{{ term.term['title'] }}</span>
                                             </n-link>
                                         </li>
                                     </ul>
@@ -282,7 +282,7 @@ export default {
                 page: 1,
                 show_cms: true,
                 order: 'popular',
-                term: null
+                terms: {}
             },
             loading: false
         }
@@ -349,8 +349,8 @@ export default {
                     } else if (flat.includes(p_type)) {
                         title = this.publication.options['post_types'][flat.indexOf(p_type)].title;
                     } else if (this.home.term.id) {
-                        title = this.home.term.title
-                        description = this.home.term.description
+                        title = this.home.term.term.title
+                        description = this.home.term.term.description
                     } else {
                         title = p_type
                     }
@@ -415,12 +415,14 @@ export default {
             if (p.post_type === "newest" || q.order === "newest") {
                 this.query.order = "newest"
             }
-            this.query.page = q.page ? Number.parseInt(q.page) : 1;
+            this.query.page = q.page ? Number.parseInt(q.page.toString()) : 1;
             if (p.post_type && !["newest", "popular"].includes(p.post_type)) {
                 if (this.publication.options['post_types'].map(x => x.label).includes(p.post_type)) {
                     this.query.post_type = p.post_type
                 } else {
-                    this.query.term = p.post_type
+                    this.query.terms = {
+                        tag: p.post_type
+                    }
                 }
             }
             // Making query

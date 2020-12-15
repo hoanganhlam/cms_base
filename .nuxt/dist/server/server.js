@@ -3379,7 +3379,7 @@ const cookieparser =  true ? __webpack_require__(27) : undefined;
     } else {}
 
     if (hostname.includes('127.0.0.1')) {
-      hostname = 'pushfact.com';
+      hostname = 'reacthacks.com';
     }
 
     let token = await getToken();
