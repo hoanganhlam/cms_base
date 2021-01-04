@@ -811,7 +811,7 @@ async function setContext(app, context) {
       base: '/',
       env: {
         "SITE_URL": "http://127.0.0.1:3000",
-        "API_ENDPOINT": "https://cms.fournalist.com/v1"
+        "API_ENDPOINT": "https://api.fournalist.com/v1"
       }
     }; // Only set once
 
@@ -2262,7 +2262,7 @@ const setupProgress = axios => {
   // runtimeConfig
   const runtimeConfig = ctx.$config && ctx.$config.axios || {}; // baseURL
 
-  const baseURL =  false ? undefined : runtimeConfig.baseURL || process.env._AXIOS_BASE_URL_ || 'https://cms.fournalist.com/v1'; // Create fresh objects for all default header scopes
+  const baseURL =  false ? undefined : runtimeConfig.baseURL || process.env._AXIOS_BASE_URL_ || 'https://api.fournalist.com/v1'; // Create fresh objects for all default header scopes
   // Axios creates only one which is shared across SSR requests!
   // https://github.com/mzabriskie/axios/blob/master/lib/defaults.js
 
