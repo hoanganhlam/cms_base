@@ -4,12 +4,14 @@
     "path": "/post",
     "component": "/Users/apple/Desktop/OpenSource/cms-base/pages/post/index.vue",
     "chunkName": "pages/post/index",
-    "url": "/post"
+    "url": "/post",
+    "_name": "_2d35c73e"
   },
   {
     "name": "post_type-id",
     "path": "/:post_type?/:id?",
     "component": "/Users/apple/Desktop/OpenSource/cms-base/pages/_post_type/_id.vue",
-    "chunkName": "pages/_post_type/_id"
+    "chunkName": "pages/_post_type/_id",
+    "_name": "_2ab70380"
   }
 ]

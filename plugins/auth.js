@@ -61,7 +61,7 @@ export default async function (context, inject) {
             hostname = or.hostname + (or.port ? `:${or.port}` : '');
         }
         if (hostname.includes('127.0.0.1')) {
-            hostname = 'reacthacks.com'
+            hostname = 'pushfact.com'
         }
         let token = await getToken();
         await setToken(token);

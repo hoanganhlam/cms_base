@@ -150,7 +150,7 @@ export async function setContext (app, context) {
       payload: context.payload,
       error: context.error,
       base: '/',
-      env: {"SITE_URL":"http://127.0.0.1:3000","API_ENDPOINT":"https://api.fournalist.com/v1"}
+      env: {"API_ENDPOINT":"https://api.fournalist.com/v1"}
     }
     // Only set once
     if (!process.static && context.req) {

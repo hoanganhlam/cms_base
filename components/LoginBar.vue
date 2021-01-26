@@ -1,6 +1,6 @@
 <template>
     <b-dropdown position="is-bottom-left" append-to-body v-if="!Boolean(currentUser)">
-        <div slot="trigger">Log in</div>
+        <div slot="trigger" class="clickable">Log in</div>
         <b-dropdown-item custom>
             <login></login>
         </b-dropdown-item>

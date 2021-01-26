@@ -3,6 +3,7 @@ export const post_detail = [
     "title",
     "slug",
     "description",
+    "content",
     {
         "post_related": [
             "title",

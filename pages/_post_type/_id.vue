@@ -2,7 +2,7 @@
     <div class="site-wrapper">
         <div class="sub-nav navbar">
             <div class="container">
-                <div class="navbar-menu">
+                <div class="navbar-menu is-mobile">
                     <div class="navbar-start" v-if="isTax || isHome">
                         <b-dropdown class="topic-select" trap-focus>
                             <div class="navbar-item clickable" slot="trigger">
@@ -191,6 +191,12 @@
                                 <item is-full :value="post" :visible-items="visibleItems('detail')">
                                     <div class="article">
                                         <div class="content" v-html="toHTML(post.content)"></div>
+                                        <div v-if="post.meta['refers']" class="notification content mb-4">
+                                            <h4>References</h4>
+                                            <ul>
+                                                <li v-for="(ref, i) in post.meta['refers']" :key="i" v-html="ref"></li>
+                                            </ul>
+                                        </div>
                                         <div class="columns is-mobile is-variable is-2">
                                             <div class="column" v-if="post.previous">
                                                 <n-link :to="`/${post.previous.post_type}/${post.previous.slug}`"
@@ -221,7 +227,8 @@
                                             <span>Tags</span>
                                         </div>
                                         <div class="tags">
-                                            <n-link v-for="tax in hashTags" :key="tax.id" :to="`/`" class="tag">
+                                            <n-link v-for="tax in hashTags" :key="tax.id" :to="`/${tax.term.slug}`"
+                                                    class="tag">
                                                 <span>{{ tax.term.title }}</span>
                                             </n-link>
                                         </div>
@@ -281,7 +288,7 @@ export default {
                 page_size: 10,
                 page: 1,
                 show_cms: true,
-                order: 'popular',
+                order: 'newest',
                 terms: {}
             },
             loading: false
@@ -455,8 +462,7 @@ export default {
                     }
                 });
             } else {
-                let arr = p.id.split("-");
-                this.post = await this.$axios.$post(`${uri}/posts/${arr[arr.length - 1]}/`, {
+                this.post = await this.$axios.$post(`${uri}/posts/${p.id}/`, {
                     schema: schema.post_detail
                 }, {
                     params: {

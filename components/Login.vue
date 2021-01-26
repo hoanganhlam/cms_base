@@ -1,5 +1,5 @@
 <template>
-    <section style="width: 350px;">
+    <section style="min-width: 350px;">
         <b-field grouped v-show="!loginTemp">
             <b-field label="First name" expanded>
                 <b-input v-model="form.first_name" placeholder="Larry" required>

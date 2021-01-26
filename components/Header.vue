@@ -11,14 +11,13 @@
                         <span class="is-uppercase">FOURNALIST</span>
                         <span>.com</span>
                     </n-link>
-                    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
-                       data-target="navbarBasicExample">
+                    <a role="button" class="navbar-burger burger" @click="isActive = !isActive">
                         <span aria-hidden="true"></span>
                         <span aria-hidden="true"></span>
                         <span aria-hidden="true"></span>
                     </a>
                 </div>
-                <div id="navbarBasicExample" class="navbar-menu">
+                <div id="navbarBasicExample" class="navbar-menu" v-bind:class="{'is-active': isActive}">
                     <div class="navbar-end">
                         <div class="navbar-item">
                             <login-bar></login-bar>
@@ -52,18 +51,42 @@ export default {
             }
 
         }
+    },
+    data() {
+        return {
+            isActive: false
+        }
     }
 }
 </script>
 
 <style lang="scss">
+.header .navbar {
+    z-index: 40;
+}
+
 .sub-nav {
     box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.05), 0 2px 4px 0 rgba(0, 0, 0, 0.06);
     height: 3rem;
     margin-bottom: 1rem;
+    position: sticky!important;
+    top: 0;
 
     .navbar-start {
         margin-left: -.75rem;
+    }
+
+    .navbar-menu.is-mobile {
+        align-items: stretch;
+        display: flex;
+        box-shadow: unset;
+        padding: .25rem 0;
+
+        .navbar-start {
+            display: flex;
+            justify-content: flex-start;
+            margin-right: auto;
+        }
     }
 }
 </style>
